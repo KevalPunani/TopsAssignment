@@ -1,0 +1,66 @@
+body {
+    background: #000;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.slider {
+    position: relative;
+    width: 45%;
+    height: 50vh;
+    margin: auto;
+}
+
+.slide {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    top: 0;
+    display: none;
+    width: 100%;
+    height: 50vh;
+    border: 1px solid #FFFFFF;
+    border-radius: 20px;
+}
+
+.active {
+    scale: 1.0;
+    transform: translateX(0%) translateZ(0);
+    transition: 0.5s all cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 100;
+    display: block;
+}
+
+.prev {
+    scale: 0.7;
+    transform: translateX(-100%) translateZ(0);
+    transition: 0.5s all cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 90;
+    display: block;
+}
+
+.next {
+    scale: 0.7;
+    transform: translateX(100%) translateZ(0);
+    transition: 0.5s all cubic-bezier(0.4, 0.0, 0.2, 1);
+    z-index: 90;
+    display: block;
+}
+
+.controls {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 110;
+    left: 0;
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    font-size: 32px;
+    color: rgb(255, 255, 255);
+}

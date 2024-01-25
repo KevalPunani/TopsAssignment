@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mark Sheet</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        main {
+            width: 50%;
+            margin: 0px auto;
+            border: 1px solid black;
+
+            h2 {
+                text-align: center;
+            }
+
+
+            section {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+
+                .subjectName {
+                    display: flex;
+                    align-items: center;
+                    width: 80%;
+                    margin: 0px auto;
+
+                    label {
+                        flex: .5;
+                        float: left;
+                    }
+
+                    input {
+                        flex: .5;
+                        padding: 8px;
+                        margin: 5px;
+                    }
+                }
+
+                button {
+                    padding: 10px;
+                    margin: 10px;
+                    width: 80%;
+                    margin: 0px auto;
+                }
+
+                #result {
+                    width: 80%;
+                    margin: 0px auto;
+                    padding: 10px;
+                    display: inline-block;
+                    text-align: center;
+                }
+            }
+        }
+
+        @media (max-width: 1024px) {
+            main {
+                width: 80%;
+
+                section {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+
+
+                    .subjectName {
+                        display: flex;
+                        align-items: center;
+                        width: 80%;
+                        margin: 0px auto;
+
+                        label {
+                            flex: .5;
+                            float: left;
+                        }
+
+                        input {
+                            flex: .5;
+                            padding: 8px;
+                            margin: 5px;
+                        }
+                    }
+
+                    button {
+                        padding: 10px;
+                        margin: 10px;
+                        width: 80%;
+                        margin: 0px auto;
+                    }
+
+                    #result {
+                        width: 80%;
+                        margin: 0px auto;
+                        padding: 10px;
+                        display: inline-block;
+                        text-align: center;
+                    }
+                }
+            }
+        }
+
+        @media (max-width: 768px) {
+            main {
+                width: 100%;
+
+                section {
+                    .subjectName {
+                        width: 90%;
+                    }
+
+                    button {
+                        width: 90%;
+                    }
+
+                    #result {
+                        width: 90%;
+                    }
+                }
+
+            }
+        }
+
+        @media (max-width: 425px) {
+            main {
+                width: 100%;
+
+                section {
+                    .subjectName {
+                        align-items: start;
+                        flex-direction: column;
+                        width: 90%;
+                        margin-top: 5px;
+
+                        input {
+                            width: 90%;
+                            margin: 5px 0px 5px 0px;
+                        }
+                    }
+                }
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <h2>Mark Sheet</h2>
+        <hr>
+        <section>
+            <div class="subjectName">
+                <label for="CLanguage">C Language:</label>
+                <input type="number" id="CLanguage" placeholder="C Language Marks">
+            </div>
+            <div class="subjectName">
+                <label for="C_Language">C++ Language:</label>
+                <input type="number" id="C_Language" placeholder="C++ Language Marks">
+            </div>
+            <div class="subjectName">
+                <label for="Database">Database</label>
+                <input type="number" id="Database" placeholder="Database Marks">
+            </div>
+            <div class="subjectName">
+                <label for="HTML">HTML</label>
+                <input type="number" id="HTML" placeholder="HTML Marks">
+            </div>
+            <div class="subjectName">
+                <label for="CSS">CSS</label>
+                <input type="number" id="CSS" placeholder="CSS Marks">
+            </div>
+            <div class="subjectName">
+                <label for="php">php</label>
+                <input type="number" id="php" placeholder="php Marks">
+            </div>
+            <div class="subjectName">
+                <label for="Corejava">Core java</label>
+                <input type="number" id="Corejava" placeholder="Corejava Marks">
+            </div>
+            <button onclick="calculateResult()">Calculate Result</button>
+            <div id="result"></div>
+        </section>
+    </main>
+
+    <script>
+        function calculateResult() {
+            // Get user input for marks in each subject
+            let CLanguageMarks = parseFloat(document.getElementById("CLanguage").value) || 0;
+            let C_LanguageMarks = parseFloat(document.getElementById("C_Language").value) || 0;
+            let DatabaseMarks = parseFloat(document.getElementById("Database").value) || 0;
+            let HTMLMarks = parseFloat(document.getElementById("HTML").value) || 0;
+            let CSSMarks = parseFloat(document.getElementById("CSS").value) || 0;
+            let phpMarks = parseFloat(document.getElementById("php").value) || 0;
+            let CorejavaMarks = parseFloat(document.getElementById("Corejava").value) || 0;
+
+            // Calculate total and average marks
+            let totalMarks = CLanguageMarks + C_LanguageMarks + DatabaseMarks + HTMLMarks + CSSMarks + phpMarks + CorejavaMarks;
+            let averageMarks = totalMarks / 7;
+
+            // Determine the grade based on average marks
+            let grade = getGrade(averageMarks);
+
+            // Display the result in the result div
+            document.getElementById("result").innerHTML = `
+        <p>Total Marks: ${totalMarks}</p>
+        <p>Average Marks: ${averageMarks.toFixed(2)}</p>
+        <p>Grade: ${grade}</p>`;
+        }
+
+        function getGrade(averageMarks) {
+            if (averageMarks >= 90) {
+                return 'A';
+            } else if (averageMarks >= 80) {
+                return 'B';
+            } else if (averageMarks >= 70) {
+                return 'C';
+            } else if (averageMarks >= 60) {
+                return 'D';
+            } else {
+                return 'F';
+            }
+        }
+    </script>
+</body>
+
+</html>
